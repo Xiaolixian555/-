@@ -1,0 +1,26 @@
+package cn.xlx.operator.entity;
+
+public class Operators {
+	//收费员实体类
+	private Long id;  // 编号
+	private String name;   // 收费员姓名
+	private String password; // 收费员密码
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}
