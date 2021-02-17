@@ -53,6 +53,4 @@ public class ViewOwner {
 	public void setFeedate(Date feedate) {
 		this.feedate = feedate;
 	}
-	
-	
 }

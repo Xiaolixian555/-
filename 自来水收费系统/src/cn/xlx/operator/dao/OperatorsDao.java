@@ -12,6 +12,7 @@ import cn.xlx.waterboss.dao.BaseDao;
 import cn.xlx.waterboss.entity.Owners;
 
 public class OperatorsDao {
+	public static boolean ifadd = true;
 	public static boolean ifdelete = true;
 
 	// 判断旧密码是否正确
@@ -88,7 +89,7 @@ public class OperatorsDao {
 		return null;
 	}
 
-	// 添加业主的功能
+	// 添加业主的功能(返回添加是否成功)
 	public static void addOwner(Long id, String name, String password, Long addressid, String housenumber,
 			String watermeter, Date adddate, Long ownertypeid) {
 		Owners newowner = new Owners();
@@ -114,9 +115,13 @@ public class OperatorsDao {
 			stmt.setString(6, newowner.getWatermeter());
 			stmt.setDate(7, new java.sql.Date(newowner.getAdddate().getTime()));
 			stmt.setLong(8, newowner.getOwnertypeid());
-			stmt.execute(); // 语句发射
+			if (stmt.executeUpdate() == 0) { // 若影响条数为0，则返回FALSE
+				ifadd = false;
+			} else {
+				ifadd = true;
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			ifadd = false;
 		} finally {
 			BaseDao.closeAll(null, stmt, conn);
 		}
